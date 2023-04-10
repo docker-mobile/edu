@@ -1,0 +1,34 @@
+{% extends "account.html" %}
+
+{% block main %}
+    <div class="table-responsive pt-5">
+        {% if exam_schedule %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>شماره آزمون</th>
+                        <th>نام درس</th>
+                        <th>زمان آزمون</th>
+                        <th>نمره</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for exam in exam_schedule %}
+                        <tr>
+                            <td>{{ exam.id }}</td>
+                            <td>{{ exam.subject }}</td>
+                            <td>{{ exam.date }}</td>
+                            {% for exam_score in exam_scores %}
+                                {% if exam_score.exam_id.id == exam.id and exam_score.student.user == user %}
+                                    <td>{{ exam_score.exam_score }}</td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>هیچ امتحانی در حال حاضر وجود ندارد</p>
+        {% endif %}
+    </div>
+{% endblock %}

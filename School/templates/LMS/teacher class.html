@@ -1,0 +1,20 @@
+{% extends "account.html" %}
+
+{% block main %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <form action="" method="post">{% csrf_token %}
+                    <label >کلاس ها: </label><br>
+                        {% for class in classes %}
+                            <div class="form-check">
+                                <label class="form-check-label">{{ class }}</label>
+                                <input type="checkbox" class="form-check-input" name="{{ class }}" value="{{ class }}">
+                            </div>
+                        {% endfor %}
+                    <button type="submit" class="btn btn-primary">تایید</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

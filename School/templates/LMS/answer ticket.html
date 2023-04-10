@@ -1,0 +1,18 @@
+{% extends "account.html" %}
+
+{% block main %}
+    <div class="container-md">
+        <div class="row justify-content-center">
+            <div class="col-md-7 bg-danger-subtle my-5 rounded-3 shadow p-4 px-3">
+                <form action="" method="post">{% csrf_token %}
+                    <p class="form-label">شماره تیکت: {{ ticket_id }}</p>
+                    <div class="form-floating">
+                        <textarea name="answer" style="height: 150px;" class="form-control">{{ last_answer }}</textarea>
+                        <label>پاسخ: </label>
+                    </div>
+                    <center><button type="submit" class="btn btn-primary mt-4 w-75">ثبت</button></center>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

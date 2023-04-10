@@ -1,0 +1,42 @@
+{% extends "account.html" %}
+
+{% block main %}
+	{% if own_sample_exams %}
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>شماره</th>
+						<th>درس</th>
+						<th>پایه</th>
+						<th>توضیحات</th>
+						<th>اقدامات</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for exam in own_sample_exams %}
+						<tr>
+							<td>{{ exam.id }}</td>
+							<td>{{ exam.subject }}</td>
+							<td>{{ exam.grade }}</td>
+							<td>{{ exam.description }}</td>
+							<td><a href="{{ exam.id }}/delete" class="btn btn-danger">حذف</a>
+							{% load static %}
+							<a href="{% static 'pdf' %}{{ exam.file }}" class="btn btn-success" download>دانلود</a></td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	{% endif %}
+	<div class="container-lg">
+		<div class="row justify-content-center mt-5">
+			<div class="col-lg-7 bg-danger-subtle shadow rounded-3 py-2">
+				<form method="POST" enctype="multipart/form-data">{% csrf_token %}
+					{{ form.as_p }}
+					<center><button type="submit" class="btn btn-success w-75">ثبت</button></center>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}

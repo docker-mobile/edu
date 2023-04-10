@@ -1,0 +1,33 @@
+{% extends "account.html" %}
+
+{% block main %}
+	<div class="container-lg">
+		<div class="row">
+			{% for exam in sample_exams %}
+				<div class="col-lg-4">
+					<div class="card">
+						<div class="card-header p-2 bg-success-subtle">
+							<h5>نام درس: {{ exam.subject }}</h5>
+						</div>
+						<div class="card-body py-1">
+							<h6>نام طراح: آقای {{ exam.teacher.user.last_name }}</h6>
+							{% if exam.grade == "7" %}
+								<p class="lead">برای پایه <strong>هفتم</strong></p>
+							{% elif exam.grade == "8" %}
+								<p class="lead">برای پایه <strong>هشتم</strong></p>
+							{% elif exam.grade == "9" %}
+								<p class="lead">برای پایه <strong>نهم</strong></p>
+							{% endif %}
+							<p>توضیحات: {{ exam.description }}</p>
+						</div>
+						<div class="card-footer">
+							{% load static %}
+							<a class="btn rounded-pill btn-primary" href="{% static 'pdf' %}{{ exam.file.url }}" role="button" download>دانلود</a>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+
+{% endblock %}

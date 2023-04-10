@@ -1,0 +1,29 @@
+{% extends 'account.html' %}
+
+{% block main %}
+    <div class="container-md">
+        <div class="row my-5">
+            {% for festival in festivals %}
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <p class="lead"> جشنواره {{ festival.title }}</p>
+                        </div>
+                        <div class="card-body">
+                            <p>مهلت ثبت نام: {{ festival.until_date }}</p>
+                            <a href="{{ festival.id }}" class="btn btn-primary">زیرمحور ها</a>
+                        </div>
+                        
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div> 
+    <div class="group-2">
+        <h4>ثبت نام شده ها</h4>
+        {% for register in registered %}
+            <p>{{ register }}</p>
+            <a href="{{ register }}" class="btn btn-primary"><i class="bi bi-eye-fill"> </i>وضعیت</a>
+        {% endfor %}
+    </div>
+{% endblock %}

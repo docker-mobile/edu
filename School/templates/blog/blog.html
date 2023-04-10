@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container-lg">
+    <h3 class="text-center my-5 mt-3">مقالات</h3>
+        <div class="row mb-5">
+            <div class="col-lg-3 px-3 py-2">
+                <h5 class="text-center">محبوب ترین مقالات</h5>
+                <ul class="list-group">
+                    {% for post in famous_post %}
+                        <a href="/blog/{{ post.slug }}" class="list-group-item list-group-item-action rounded-pill px-3 pb-0 my-2">
+                            {{ post.title }}
+                            <p class="my-0 ms-2">
+                                <p class="text-muted my-0 d-inline me-4"><i class="bi bi-eye-fill"> </i> {{ post.view }}</p>
+                                <p class="text-muted mt-0 d-inline">{{ post.date }}</p>
+                            </p>
+                        </a>
+                    {% endfor  %}
+                </ul>
+            </div>
+            <div class="col-lg-9 px-3 py-2 rounded-1 shadow" style="background-color: #ffbfa6">
+                <div class="container-fluid">
+                    {% if user.is_superuser %}
+                        <a href="/account/manage-blog" class="bi bi-pencil-square text-start text-dark text-decoration-none"> افزودن</a>
+                    {% endif %}
+                    <div class="row justify-content-center">
+                        {% for post in posts %}
+                            <div class="col-lg-4">
+                                <div class="card my-3 mx-2">
+                                    <div class="card-header bg-transparent">
+                                        <img src="{{ post.header_img.url }}" alt="{{ post.title }}" style="height: 40%;width: 100%">
+                                    </div>
+                                    <div class="mt-2 card-body">
+                                        <h6>{{ post.title }}</h6>
+                                        <p>{{ post.content|truncatechars:70 }}</p>
+                                        <a class="btn btn-info" href="/blog/{{ post.slug }}">ادامه مطلب</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

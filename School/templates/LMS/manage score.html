@@ -1,0 +1,49 @@
+{% extends "account.html" %}
+
+{% block main %}
+    {% if class_choices %}
+        {% if students_list %}
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>کاربر</th>
+                            <th>نام و نام خانوادگی</th>
+                            <th>اقدامات</th>
+                        </tr>
+                    </thead>
+                    {% load custom_tags %}
+                    <tbody>
+                        {% for student in students_list %}
+                            <tr>
+                                <td>{{ student.user }}</td>
+                                <td>{{ student.user.first_name }}{{ student.user.last_name }}</td>
+                                <td><a href="/account/manage-scores/{{ teacher_subject }}/{{ student.user }}" class="btn btn-outline-primary">ویرایش</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="container-md">
+                <div class="row">
+			        <div class="col-lg-5 bg-danger-subtle shadow rounded-5 p-4  mx-auto my-5">
+                        <form action="" method="get">
+                            {% for choice in class_choices %}
+                                <label for="{{ choice }}" class="form-label">{{ choice }}</label>
+                                <input type="radio" name="class_subject_choice" value="{{ choice }}" class="input-check" id="{{ choice }}">
+                                <br>
+                            {% endfor %}
+                            <br>
+                            <center><button type="submit" class="btn btn-outline-primary">تایید</button></center>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% else %}
+        <p>شما در هیچ کلاسی ثبت نشده اید.</p>
+        <p>لطفا برای پستیبانی یک تیکت را ارسال کنید یا به مدیریت مدرسه اطلاع دهید</p>
+    {% endif %}
+    
+{% endblock %}

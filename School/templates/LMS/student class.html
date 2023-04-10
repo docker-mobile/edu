@@ -1,0 +1,26 @@
+{% extends "account.html" %}
+
+{% block main %}
+    <div class="container-lg">
+        <div class="row justify-content-center">
+            <div class="col-lg-5">
+                <form action="" method="post"> {% csrf_token %}
+                    <label><b>دانش آموز: {{ user }}</b></label><br>
+                    <label>پایه: </label>
+                    <select name="grade">
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                    </select><br>
+                    <label>کلاس: </label>
+                    <select name="class">
+                        <option value="A">a</option>
+                        <option value="B">b</option>
+                        <option value="C">c</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary mx-auto">تایید</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

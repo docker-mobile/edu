@@ -1,0 +1,45 @@
+{% extends 'account.html' %}
+
+{% block main %}
+    <div class="container-lg">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 shadow rounded-3 bg-warning-subtle my-5 py-2">
+                <h4 class="text-center">ساخت نوشته</h4>
+                <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+                    {{ form.as_p }}
+                    <center><button type="submit" class="btn btn-outline-success w-75">ثبت</button></center>
+                </form>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td>شماره</td>
+                                <td>موضوع</td>
+                                <td>عکس سربرگ</td>
+                                <td>متن</td>
+                                <td>ضمیمه</td>
+                                <td>ویرایش</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for post in blog_posts %}
+                                <tr>
+                                    <td>{{ post.id }}</td>
+                                    <td>{{ post.title }}</td>
+                                    <td><a href="{{ post.header_img.url }}" class="btn btn-primary">تماشا</a></td>
+                                    <td>{{ post.content|truncatewords:20 }}</td>
+                                    <td><a href="{{ post.file.url }}" class="btn btn-primary" download>دانلود</a></td>
+                                    <td><a class="btn btn-warning" href="{{ post.slug }}/edit">ویرایش</a></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

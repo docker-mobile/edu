@@ -1,0 +1,112 @@
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.rtl.min.css" integrity="sha384-DOXMLfHhQkvFFp+rWTZwVlPVqdIhpDVYT9csOnHSgWQWPX0v5MCGtjCJbY6ERspU" crossorigin="anonymous">
+    {% load static %}
+    <title>شهدای فرهنگی - {{ title }}</title>
+    <style>
+        section {
+            padding: 10px 60px;
+        }
+    </style>
+</head>
+<body>
+    <!-- information -->
+    <section id="information" class="p-0 py-1">
+        <div class="">
+            <div class="float-start px-2">
+                <i class="bi bi-envelope-fill"></i>
+                <a href="mailto:shfarhangi@email.com" class="text-decoration-none text-dark">shfarhangi@email.com</a>
+            </div>
+            <div class="px-2">
+                <i class="bi bi-telephone-fill"></i>
+                <a href="tel:+981154283021" class="text-decoration-none text-dark">011-54283021</a>
+            </div>
+        </div>
+    </section>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-md px-2 rounded-2 sticky-lg-top" style="background-color: #7be5ff">
+        <div class="container-xxl">
+            <a href="/" class="navbar-brand">
+                <i class="bi bi-bookmark-star-fill"></i>
+                <span class="fw-bold ">شهدای فرهنگی</span>
+            </a>
+            <div id="navbar" class="navbar-collapse collapse justify-content-start align-center">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="/contact-us" class="nav-link">تماس با ما</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/about-us" class="nav-link">درباره ما</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/#latest-news" class="nav-link">اخبار</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/blog" class="nav-link">وبلاگ</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- search button -->
+            <button class="btn bi bi-search d-lg-none justify-content-start" data-bs-toggle="collapse" data-bs-target="#search" aria-expanded="false" aria-controls="search"></button>
+            <!-- search in medium -->
+            <form action="/search" method="get" id="search" class="text-center ms-5 m-auto collapse d-lg-block">
+                <div class="input-group">
+                    <input type="text" name="s" class="form-control" placeholder="جست و جو در میان مقاله ها">
+                    <button type="submit" class="input-group-text bg-success text-light"><i class="bi bi-search"></i></button>
+                </div>
+            </form>
+            <!-- toggler button -->
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+    <!-- intro -->
+    {% block content %}
+    {% endblock %}
+    <!-- footer -->
+    <section id="footer"  class="bg-dark">
+        <div class="containter-md">
+            <div class="row">
+                <div class="col-md">
+                    <h5 class="text-warning border-bottom py-2">لینک ها مفید</h5>
+                    <div class="list-group list-group-flush">
+                        <a href="/about-us" class="list-group-item list-group-item-action text-light bg-transparent">درباره ما</a>
+                        <a href="/contact-us" class="list-group-item list-group-item-action text-light bg-transparent">تماس با ما</a>
+                        <a href="/blog" class="list-group-item list-group-item-action text-light bg-transparent">وبلاگ</a>
+                        <a href="/sample-exam" class="list-group-item list-group-item-action text-light bg-transparent">نمونه سوالات</a>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <h5 class="text-warning border-bottom py-2">تماس با ما</h5>
+                    <p class="py-2 text-warning"><i class="bi bi-envelope-at-fill"></i><a href="mailto:shfarhangi@email.com" class="text-decoration-none text-light px-2">shfarhangi@email.com</a></p>
+                    <p class="py-2 text-warning"><i class="bi bi-telephone-fill"></i><a href="tel:+981154283021" class="text-decoration-none text-light px-2">011-54283021</a></p>
+                </div>
+                <div class="col-md">
+                    <h6 class="text-warning border-bottom py-2">دبیرستان شهدای  فرهنگی</h6>
+                    <p class="text-light">مدرسه شهدای فرهنگی از سال 1372 شروع به کار کرده است. این مدرسه یک محیط آموزشی بسیار موفق و متنوع است که به دانش آموزانش امکانات لازم را برای رسیدن به هدف هایشان می دهد و برای هر کسی که به دنبال یادگیری و پیشرفت است، بهترین گزینه است. 
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="copyright" class="bg-dark text-light">
+        <div class="container-fluid m-0">
+            <div class="row m-0 p-0">
+                <p class="text-center">هر گونه کپی برداری از این وب‌سایت پیگرد قانونی دارد.1401-1402©</p>
+            </div>
+            <div class="row">
+                <p class="text-start text-info" style="font-size: 9pt;">طراحی شده توسط سیدامیرحسین میرفلاحی</p>
+            </div>
+        </div>
+    </section>
+    <!-- scripts -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+</body>
+</html>

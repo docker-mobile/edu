@@ -1,0 +1,15 @@
+{% extends 'account.html' %}
+
+{% block main %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 bg-info-subtle pt-3 mt-5 rounded-3 shadow">
+                <form action="" method="post">{% csrf_token %}
+                    <label class="form-label">پاسخ: </label>
+                    <textarea name="feedback" class="form-control mb-3 rounded-3 shadow" style="height: 150px;">{{ feedback }}</textarea>
+                    <center><button type="submit" class="btn btn-outline-primary w-75">ثبت</button></center>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

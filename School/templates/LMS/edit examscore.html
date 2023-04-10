@@ -1,0 +1,33 @@
+{% extends "account.html" %}
+
+{% block main %}
+    {% if student_list %}
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>کاربر</th>
+                        <th>نام و نام خانوادگی</th>
+                        <th>نمره پیشین</th>
+                        <th>اقدامات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in student_list %}
+                        <tr>
+                            <td>{{ student.user }}</td>
+                                {% for user in users %}
+                                    {% if user == student.user %}
+                                        <td>{{ user.first_name }} {{ user.last_name }}</td>
+                                    {% endif %}
+                                {% endfor %}
+                            {% load custom_tags %}
+                            <td>{{ student|get_exam_score }}</td>
+                            <td><a href="{{ student.user_id }}" class="btn btn-primary">ویرایش</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+{% endblock %}

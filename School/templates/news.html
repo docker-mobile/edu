@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container-lg">
+    <h3 class="text-center my-5 mt-3">خبرها</h3>
+        <div class="row mb-5">
+            <div class="col-lg-3 px-3 py-2">
+                <h5 class="text-center">محبوب ترین خبرها</h5>
+                <ul class="list-group">
+                    {% for new in famous_news %}
+                        <a href="/new/{{ new.slug }}" class="list-group-item list-group-item-action rounded-pill px-3 pb-0 my-2">
+                            {{ new.title }}
+                            <p class="my-0 ms-2">
+                                <p class="text-muted my-0 d-inline me-4"><i class="bi bi-person-circle"> </i> مدیر</p>
+                            </p>
+                        </a>
+                    {% endfor  %}
+                </ul>
+            </div>
+            <div class="col-lg-9 px-3 py-2 rounded-1 shadow" style="background-color: #ffe13c">
+                <div class="container-fluid">
+                    {% if user.is_superuser %}
+                        <a href="/account/manage-news" class="bi bi-pencil-square text-start text-dark text-decoration-none"> افزودن</a>
+                    {% endif %}
+                    <div class="row justify-content-center">
+                        {% for new in news %}
+                            <div class="col-lg-4">
+                                <div class="card my-3 mx-2">
+                                    <div class="mt-2 card-body">
+                                        <div class="card-header">
+                                            <h6>{{ new.title }}</h6>
+                                        </div>
+                                        <p>{{ new.content|truncatechars:70 }}</p>
+                                        <a class="btn btn-info" href="/new/{{ new.slug }}">ادامه مطلب</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

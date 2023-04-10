@@ -1,0 +1,49 @@
+{% extends "account.html" %}
+
+{% block main %}
+    {% if scores %}
+        <div class="table-responsive pt-5">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>نام و نام خانوادگی</th>
+                        <th>نام درس</th>
+                        <th>عنوان</th>
+                        <th>نمره</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for score in scores %}
+                        <tr>
+                            <td>{{ fullname }}</td>
+                            <td>{{ score.subject }}</td>
+                            {% if score.title == "semester1 mostamar" %}
+                                <td>تکوینی ترم اول</td>
+                                <td>{{ score.score }}</td>
+                            {% elif score.title == "semester1 exam" %}
+                                <td>پایانی ترم اول</td>
+                                <td>{{ score.score }}</td>
+                            {% elif score.title == "semester1" %}
+                                <td>نوبت اول</td>
+                                <td>{{ score.score }}</td>
+                            {% if score.title == "semester2 mostamar" %}
+                                <td>تکوینی ترم دوم</td>
+                                <td>{{ score.score }}</td>
+                            {% elif score.title == "semester2 exeam" %}
+                                <td>پایانی ترم دوم</td>
+                                <td>{{ score.score }}</td>
+                            {% elif score.title == "semester2" %}
+                                <td>نوبت دوم</td>
+                                <td>{{ score.score }}</td>
+                            {% endif %}
+                        </tr>
+                    {% endif %}
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p>متاسفانه نمراتی برای شما ثبت نشده اند</p>
+    {% endif %}
+{% endblock %}

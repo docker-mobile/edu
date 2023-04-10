@@ -1,0 +1,72 @@
+{% extends "account.html" %}
+
+{% block main %}
+    {% if all_exam %}
+        <div class="container-lg">
+            <div class="row">
+                <div class="col-lg-12 bg-success-subtle rounded-3 shadow py-3 px-2 mt-5">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>شماره امتحان</th>
+                                    <th>کلاس و درس</th>
+                                    <th>توضیحات</th>
+                                    <th>تاریخ</th>
+                                    <th>وضعیت</th>
+                                    <th>اقدامات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for exam in all_exam %}
+                                    <tr>
+                                        <td>{{ exam.id }}</td>
+                                        <td>{{ exam.class_grade }} {{ exam.subject }}</td>
+                                        <td>{{ exam.descriptions }}</td>
+                                        <td>{{ exam.date }}</td>
+                                        {% if exam.status %}
+                                            <td>گرفته شد</td>
+                                        {% else %}
+                                            <td>در انتظار</td>
+                                        {% endif %}
+                                        <td><a href="{{ exam.id }}/edit" class="btn btn-info">ویرایش</a>
+                                        {% if exam.status %}
+                                            <a href="{{ exam.id }}/scores/" class="btn btn-success">ثبت نمرات</a>
+                                        {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="container_red">
+            <p>امتحانی ساخته نشده است</p>
+        </div>
+    {% endif %}
+    <div class="container_blue">
+        <div class="row justify-content-center mt-5">
+            <div class="col-lg-6 bg-danger-subtle shadow rounded-3 ">
+                <h3 class="text-center mt-2">ثبت آزمون</h3>
+                <form action="" method="post">{% csrf_token %}
+                    <label class="form-label">کلاس و درس: </label>
+                    <select name="class_subject" class="form-select mb-3">
+                        {% for class in teacher_classes %}
+                            <option value="{{ class }}">{{ class }}</option>
+                        {% endfor %}
+                    </select>
+                    <div class="form-floating mb-3">
+                        <textarea name="description" class="form-control" style="height: 150px;"></textarea>
+                        <label class="form-label">توضیحات</label>
+                    </div>
+                    <label class="form-label">تاریخ امتحان: </label>
+                    <input type="date" name="date" class="form-control mb-3">
+                    <center><button type="submit" class="btn btn-success w-75">ثبت</button></center>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

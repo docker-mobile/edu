@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container-lg mt-3">
+        <div class="text-end">
+            <a href="/new" class="text-decoration-none text-dark">
+                <p>برگشت <i class="bi bi-arrow-left"> </i></p>
+            </a>
+        </div>
+        <div class="row justify-content-center my-4">
+            <div class="col-lg-8 shadow" style="height: fit-content">
+                <h4>{{ new.title }}</h4>
+                <p>{{ new.content|linebreaks }}</p>
+                {% if user.is_superuser %}
+                    <a href="/account/manage-news/{{ new.slug }}/edit" class="btn btn-secondary">ویرایش</a>
+                {% endif %}
+                <p class="mt-3 text-muted" style="font-size: 10pt"><i class="bi bi-person-circle"></i>مدیر </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

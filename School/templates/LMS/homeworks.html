@@ -1,0 +1,28 @@
+{% extends "account.html" %}
+
+{% block main %}
+    {% if homeworks %}
+        <div class="table-responsive pt-5">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>نام درس</th>
+                        <th>تکلیف</th>
+                        <th>تاریخ تحویل</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for homework in homeworks %}
+                        <td>{{ homework.subject }}</td>
+                        <td class="homework_field">{{ homework.homework }}</td>
+                        <td>{{ homework.check_date }}</td>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="container">
+            <p>هیچ تکلیفی برای کلاس شما تایین نشده است</p>
+        </div>
+    {% endif %}
+{% endblock %}

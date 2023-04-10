@@ -1,0 +1,38 @@
+{% extends 'account.html' %}
+
+{% block main %}
+    <style>
+        .btn-fluid {
+            width: 100%;
+        }
+    </style>
+    <div class="container-lg">
+        <div class="row justify-content-center my-5">
+            <div class="col-lg-4">
+                <button class="btn btn-warning btn-fluid btn-lg" data-bs-toggle="modal" data-bs-target="#edit-form">
+                    ویرایش
+                </button>
+            </div>
+            <div class="col-lg-4">
+                <a href="delete" class="btn btn-fluid btn-danger btn-lg">حذف</a>
+            </div>
+        </div>
+    </div>
+    <!-- modal for form -->
+    <div class="modal fade modal-lg" id="edit-form" tabindex="-1" aria-labelledby="title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="title">{{ title }}</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+                        {{ form.as_p }}
+                        <button class="btn btn-success w-75">ثبت</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

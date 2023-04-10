@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+<section id="intro" class="bg-success-subtle">
+    <div class="row justify-content-between align-items-center">
+        <div class="col-md-7">
+            <div id="school" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{% static 'assets/school.jpg' %}" class="d-block img-fluid" alt="school image 1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{% static 'assets/school.jpg' %}" class="d-block img-fluid" alt="school image 2">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#school" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#school" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+        <div class="bg-info-subtle col-lg-4 p-2 my-sm-2">
+            <h5><i class="bi bi-star-fill me-2"></i>دبیرستان شهدای فرهنگی</h5>
+            <p>با ما بهترین انتخاب برای فرزندانتان</p>  
+        </div>
+    </div>
+</section>
+<!-- second intro -->
+<section id="intro-2" class="bg-light">
+    <h2 class="text-center text- py-5 pt-3">منوی سامانه</h2>
+    <div class="row justify-content-center">
+        <div class="col-10 col-md-3">
+            <div class="card p-3">
+                <i class="bi bi-arrow-right text-primary" data-bs-toggle="modal" data-bs-target="#school-staff-modal"></i>
+                <img src="{% static '' %}assets/school facility.png" alt="" class="card-img-top">
+                <div class="card-body text-center my-2">
+                    <h3>کادر مدرسه</h3>
+                    <button class="btn btn-outline-info text-dark" data-bs-toggle="modal" data-bs-target="#school-staff-modal"><i class="bi bi-eye-fill"></i> ادامه مطلب</button>
+                </div>
+            </div>
+        </div>
+        {% if user.is_authenticated %}
+            <div class="col-10 col-md-3">
+                <div class="card p-3">
+                    <a href="/account"><i class="bi bi-arrow-right"></i></a>
+                    <img src="{% static '' %}assets/school facility.png" alt="" class="card-img-top">
+
+                    <div class="card-body text-center my-2">
+                        <h3>حساب کاربری</h3>
+                        <a class="btn btn-outline-success" href="/account">ورود به حساب</a>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="col-10 col-md-3">
+                <div class="card p-3">
+                    <a href="/login"><i class="bi bi-arrow-right"></i></a>
+                    <img src="{% static '' %}assets/school facility.png" alt="" class="card-img-top">
+
+                    <div class="card-body text-center my-2">
+                        <h3>ورود به سامانه</h3>
+                        <a class="btn btn-outline-success" href="/login">ورود</a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        <div class="col-10 col-md-3">
+            <div class="card p-3">
+                <a href="/about-us"><i class="bi bi-arrow-right"></i></a>
+                <img src="{% static '' %}assets/school facility.png" alt="" class="card-img-top">
+                
+                <div class="card-body text-center my-2">
+                    <h3>امکانات مدرسه</h3>
+                    <a class="btn btn-outline-info text-dark" href="/about-us"><i class="bi bi-eye-fill"></i> ادامه مطلب</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- latest news -->
+<section id="latest-news">
+    <div class="container-lg">
+        <h2 class="text-center">آخرین اخبار</h2>
+        <p class="text-center text-muted">در اینجا میتوانید آخرین اخبار مدرسه را ببینید.</p>
+        <div class="row my-3">
+            <a href="/new" id="more">« همه موارد</a>
+            <style>
+                #more {
+                    text-decoration: none;
+                    color: #86bb00;
+                }
+            </style>
+        </div>
+        <div class="row justify-content-between">
+            <div class="col-lg-5">
+                    <div class="accordion" id="new-accordion">
+                        {% for new in first_news %}
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#{{ new.id }}" aria-expanded="false" aria-controls="{{ new.id }}">
+                                        {{ new.title }}
+                                    </button>
+                                </h2>
+                                <div id="{{ new.id }}" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        {{ new.content|truncatewords:7 }}
+                                        <a href="/new/{{ new.slug }}" class="btn btn-secondary">ادامه مطلب</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="accordion" id="new-accordion">
+                    {% for new in second_news %}
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#{{ new.id }}" aria-expanded="false" aria-controls="{{ new.id }}">
+                                    {{ new.title }}
+                                </button>
+                            </h2>
+                            <div id="{{ new.id }}" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    {{ new.content|truncatewords:7 }}
+                                    <a href="/new/{{ new.slug }}" class="btn btn-secondary">ادامه مطلب</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- gallery section -->
+<section id="gallery" class="bg-light">
+    <div class="container-md">
+        <h2 class="text-center">تصاویر مدرسه</h2>
+        <p class="text-muted text-center mb-5">در اینجا تصاویر مدرسه قرار دارند.</p>
+
+        <div class="row justify-content-center">
+            {% for pic in gallery %}
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-img-top">
+                            <img src="{{ pic.image.url }}" style="height: 100%; width: 100%;" alt="{{ pic.title }}">
+                        </div>
+                        <div class="card-body">
+                           <p class="lead">{{ pic.title }}</p>
+                           <p>{{ pic.content }}</p> 
+                        </div>
+                        <div class="card-footer">
+                            <p class="text-muted">{{ pic.date }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- modal -->
+<div class="modal fade" tabindex="-1" id="school-staff-modal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">کادر مدرسه</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li class="my-2"><b>مدیریت مدرسه: </b>آقای اولیایی <a href="#principle-info" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#principle-info">رزومه</a></li>
+                    <li class="my-2"><b>معاون مدرسه: </b>آقای محمدیان <a href="#staff-1-info" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#staff-1-info">رزومه</a></li>
+                    <li class="my-2"><b>معاون مدرسه: </b>آقای کیایی <a href="#staff-2-info" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#staff-2-info">رزومه</a></li>
+                    <li class="my-2"><b>معون اجرایی مدرسه: </b>آقای رودسری <a href="#staff-3-info" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#staff-3-info">رزومه</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

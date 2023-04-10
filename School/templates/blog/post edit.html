@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container-lg mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 bg-danger-subtle shadow rounded-3">
+                <h4 class="text-center">فرم ویرایش</h4>
+                <form method="post">{% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-success w-75 d-block mx-auto">ثبت</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

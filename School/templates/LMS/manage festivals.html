@@ -1,0 +1,55 @@
+{% extends 'account.html' %}
+
+{% block main %}
+    {% if festivals %}
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">نام جشنواره</th>
+                        <th scope="col">مهلت ثبت نام</th>
+                        <th scope="col">زیر محور ها</th>
+                        <th scope="col">اقدامات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for festival in festivals %}
+                        <tr>
+                            <td>{{ festival.title }}</td>
+                            <td>{{ festival.until_date }}</td>
+                            <td>{{ festival.parts }}</td>
+                            <td><a href="{{ festival.id }}/delete" class="btn btn-danger">حذف</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div><p>هیچ جشنواره ای ساخته نشده است</p></div>
+    {% endif %}
+
+    <div class="container-md">
+        <div class="row justify-content-center">
+            <div class="col-md-7 bg-warning-subtle py-4 px-3 mt-5">
+                <form action="" method="post">{% csrf_token %}
+                    <label class="form-label">نام جشنواره: </label>
+                    <div class="input-group">
+                        <input type="text" name="title" class="form-control">
+                        <i class="bi bi-buildings-fill input-group-text"></i>
+                    </div>
+                    <label class="form-label">مهلت ثبت نام: </label>
+                    <div class="input-group">
+                        <input type="text" name="until_date" class="form-control">
+                        <i class="bi bi-hourglass-split input-group-text"></i>
+                    </div>
+                    <div class="form-floating mt-4">
+                        <textarea name="parts" class="form-control" style="height: 150px;" placeholder="مثال: ادبیات فارسی، ریاضیات"></textarea>
+                        <label class="form-label">زیر محورها: </label>
+                    </div>
+                    <p class="text-danger">لطفا با "، " از هم جدا کنید.</p>
+                    <center><button type="submit" class="btn btn-outline-success w-50">ثبت</button></center>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

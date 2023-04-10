@@ -1,0 +1,17 @@
+{% extends "account.html" %}
+
+{% block main %}
+    <div class="container">
+        <div class="row">
+            {% for fb in feedback %}
+                <div class="col">
+                    <p>{{ fb.feedback }}</p>
+                    <a href="/account/festivals" class="btn btn-secondary">
+                        <span class="bi bi-arrow-return-left"> </span>برگشت
+                    </a>
+                </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+{% endblock %}

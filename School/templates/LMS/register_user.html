@@ -1,0 +1,99 @@
+{% extends "account.html" %}
+
+{% block main %}
+    {% if request.user.is_authenticated %}
+        <div class="container-md">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 shadow rounded-4 py-2 px-2 my-4">
+                    <p class="lead text-center mb-4">دبیرستان شهدای فرهنگی</p>
+                    <form action="" method="post">{% csrf_token %}
+                        <div class="inputs">
+                            {{ form.as_p }}
+                            <label for=""><b>نقش:</b></label><br>
+                            <div class="form-check">
+                                <label class="form-check-label">معلم</label>
+                                <input type="radio" name="role" value="Teacher" class="form-check-input">                    
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">دانش آموز</label>
+                                <input type="radio" name="role" value="Student" class="form-check-input">
+                            </div>
+                            <center><button type="submit" class="btn btn-primary w-75">ثبت نام</button></center>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    <div class="table-responsive">
+        <h3><b>همه کاربران</b></h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>نام</th>
+                    <th>نام خانوادگی</th>
+                    <th>پست الکترونیکی</th>
+                    <th>نام کاربری</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for info in users %}
+                    <tr>
+                        <td>{{ info.first_name }}</td>
+                        <td>{{ info.last_name }}</td>
+                        <td>{{ info.email }}</td>
+                        <td>{{ info.username }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="row mt-5">
+        <div class="col-lg">
+            <div class="table-responsive">
+                <h5>معلمان</h5>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>نام و نام خانوادگی</th>
+                            <th>نام کاربری</th>
+                            <th>کلاس‌ها</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for teacher in teachers %}
+                            <tr>
+                                <td>{{ teacher.get_fullname }}</td>
+                                <td>{{ teacher.user }}</td>
+                                <td>{{ teacher.class_subject }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-lg">
+            <h5>دانش آموزان</h5>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>نام و نام خانوادگی</th>
+                            <th>نام کاربری</th>
+                            <th>کلاس</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for student in students %}
+                            <tr>
+                                <td>{{ student.get_fullname }}</td>
+                                <td>{{ student.user }}</td>
+                                <td>{{ student.which_class }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

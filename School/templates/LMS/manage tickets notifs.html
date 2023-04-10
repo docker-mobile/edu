@@ -1,0 +1,84 @@
+{% extends "account.html" %}
+
+{% block main %}
+    <h3>{{ post }}</h3>
+    <div class="container-md w-75 bg-primary text-light m-auto my-3 p-3 rounded">
+        <h3>اعلامیه ها</h3>
+        <div class="table-responsive">
+            <table class="text-light table">
+                <thead>
+                    <tr>
+                        <th scope="col">شماره اعلامیه</th>
+                        <th scope="col">از کاربر</th>
+                        <th scope="col">برای</th>
+                        <th scope="col">پیام</th>
+                        <th scope="col">اقدامات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for notif in notifications %}
+                        <tr>
+                            <td>{{ notif.id }}</td>
+                            <td>{{ notif.from_user }}</td>
+                            <td>{{ notif.to }}</td>
+                            <td>{{ notif.message }}</td>
+                            <td><a href="{{ notif.id }}/edit-notif" class="btn btn-info">ویرایش</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="container-md w-75  text-light bg-danger m-3 p-3 rounded m-auto shadow">
+        <h3>تیکت ها</h3>
+        <div class="table-responsive">
+            <table class="text-light table">
+                <thead>
+                    <tr>
+                        <th scope="col">شماره تیکت</th>
+                        <th scope="col">از کاربر</th>
+                        <th scope="col">پیام</th>
+                        <th scope="col">وضعیت</th>
+                        <th scope="col">پاسخ</th>
+                        <th scope="col">اقدامات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ticket in support_tickets %}
+                        <tr>
+                            <td>{{ ticket.id }}</td>
+                            <td>{{ ticket.from_user.first_name }} {{ ticket.from_user.last_name }}</td>
+                            <td>{{ ticket.message }}</td>
+                            {% if ticket.status %}
+                                <td>پاسخ داده شده</td>
+                            {% else %}
+                                <td>در انتظار</td>
+                            {% endif %}
+                            {% if ticket.reply %}
+                                <td>{{ ticket.reply }}</td>
+                            {% else %}
+                                <td>ثبت نشده است</td>
+                            {% endif %}
+                            {% if ticket.reply %}
+                                <td><a href="{{ ticket.id }}/answer" class="btn btn-info">ویرایش</a></td>
+                            {% else %}
+                                <td><a href="{{ ticket.id }}/answer" class="btn btn-info">پاسخ</a></td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="container-md w-50 bg-light m-auto mt-3 p-3 rounded-3">
+        <div class="row justify-content-center">
+            <div class="col-md">
+                <h3 class="text-center">ساخت اعلامیه</h3>
+                <form action="" method="post">{% csrf_token %}
+                    {{ form.as_p }}
+                    <center><button type="submit" class="btn btn-outline-success w-100">ثبت</button></center>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

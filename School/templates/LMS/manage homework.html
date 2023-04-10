@@ -1,0 +1,54 @@
+{% extends "account.html" %}
+
+{% block main %}
+    <div class="container p-4 w-50 shadow rounded-5 mt-3">
+        <h3><b>افزودن تکلیف</b></h3>
+        <form action="" method="post">{% csrf_token %}
+            <label class="form-label">کلاس و درس: </label>
+            <select name="class" class="form-select mb-3">
+                {% for class in class_subject %}
+                    <option value="{{ class }}">{{ class }}</option>
+                {% endfor %}
+            </select>
+            <div class="form-floating mb-2">
+                <textarea name="homework" style="height: 155px;" class="form-control"></textarea>
+                <label class="form-label">تکلیف: </label>
+            </div>
+            <label class="form-label">تاریخ تحویل: </label>
+            <input type="date" name="check_date" class="form-control">
+           <center><button type="submit" class="btn btn-outline-success mt-3 w-50">تایید</button></center>
+        </form>
+    </div>
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-9 bg-danger-subtle rounded shadow">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>شماره</th>
+                                <th>کلاس</th>
+                                <th>نام درس</th>
+                                <th>تکلیف</th>
+                                <th>تاریخ بررسی</th>
+                                <th>اقدامات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for homework in homeworks %}
+                                <tr>
+                                    <td>{{ homework.id }}</td>
+                                    <td>{{ homework.class_grade }}</td>
+                                    <td>{{ homework.subject }}</td>
+                                    <td>{{ homework.homework }}</td>
+                                    <td>{{ homework.check_date }}</td>
+                                    <td><a href="{{ homework.id }}/delete" class="btn btn-danger">حذف</a></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
