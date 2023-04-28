@@ -1,0 +1,37 @@
+{% extends 'account.html' %}
+
+{% block main %}
+    {% load custom_tags %}
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>نام و نام خانوادگی</th>
+                    <th>نام درس</th>
+                    <th>ترم اول تکوینی</th>
+                    <th>ترم اول نوبت</th>
+                    <th>ترم اول پایانی</th>
+                    <th>ترم دوم تکوینی</th>
+                    <th>ترم دوم نوبت</th>
+                    <th>ترم دوم پایانی</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for score in scores %}
+                    <tr>
+                        <td>{{ score.user.get_fullname }}</td>
+                        <td>{{ score.subject }}</td>
+                        <td>{{ score.semester1_t }}</td>
+                        <td>{{ score.semester1_e }}</td>
+                        <td>{{ score.semester1 }}</td>
+                        <td>{{ score.semester2_t }}</td>
+                        <td>{{ score.semester2_e }}</td>
+                        <td>{{ score.semester2 }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <a href="excel" class="btn btn-success bi bi-filetype-xlsx">دریافت اکسل</a>
+
+{% endblock %}

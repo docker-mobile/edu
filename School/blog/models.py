@@ -9,5 +9,5 @@ class Post(models.Model):
     slug = models.SlugField(max_length=230)
     content = models.TextField(max_length=7000)
     date = models.DateField(default=timezone.now())
-    file = models.FileField(upload_to='static/assets/blog/file', default=None, null=True)
+    file = models.FileField(upload_to='static/assets/blog/file', default=None, null=True, blank=True)
     view = models.IntegerField(default=0)

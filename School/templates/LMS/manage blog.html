@@ -32,7 +32,11 @@
                                     <td>{{ post.title }}</td>
                                     <td><a href="{{ post.header_img.url }}" class="btn btn-primary">تماشا</a></td>
                                     <td>{{ post.content|truncatewords:20 }}</td>
+                                    {% if post.file %}
                                     <td><a href="{{ post.file.url }}" class="btn btn-primary" download>دانلود</a></td>
+                                    {% else %}
+                                    <td>ثبت نشده</td>
+                                    {% endif %}
                                     <td><a class="btn btn-warning" href="{{ post.slug }}/edit">ویرایش</a></td>
                                 </tr>
                             {% endfor %}

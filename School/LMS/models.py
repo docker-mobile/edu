@@ -4,7 +4,7 @@ from django.utils import timezone
 
 # Create your models here.
 class Student(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     grade = models.IntegerField(choices=((7, 7), (8, 8), (9, 9)))
     clas = models.CharField(choices=(("A", 'a'), ('B', "b"), ("C", "c")), max_length=30)
     def get_fullname(self):
@@ -12,22 +12,21 @@ class Student(models.Model):
     def which_class(self):
         return f"{self.grade}{self.clas}"
 class Teacher(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     class_subject = models.CharField(max_length=300)
     def get_fullname(self):
         return f"{self.user.get_full_name()}"
 
 class Score(models.Model):
     user = models.ForeignKey(Student, on_delete=models.CASCADE)
-    choices = (
-        ("semester1", "ترم اول"),
-        ("semester1 mostamar", "مستمر ترم اول"),
-        ("semester1 exam", "نوبت ترم اول"),
-        ("semester2", "ترم دوم"),
-        ("semester2 mostamar", "مستمر ترم دوم"),
-        ("semester2 exam", "نوبت ترم دوم")
-    )
-    title = models.CharField(max_length=100, choices=choices)
+
+    semester1 = models.CharField(max_length=5, default="_")
+    semester1_t = models.CharField(max_length=5, default="_")
+    semester1_e = models.CharField(max_length=5, default="_")
+    semester2 = models.CharField(max_length=5, default="_")
+    semester2_t = models.CharField(max_length=5, default="_")
+    semester2_e = models.CharField(max_length=5, default="_")
+
     SUBJECTS = (
         ('ریاضی', 'ریاضی'),
         ('علوم', 'علوم'),
@@ -45,9 +44,8 @@ class Score(models.Model):
         ('انضباط', 'انضباط')
     )
     subject = models.CharField(max_length=50, choices=SUBJECTS)
-    score = models.FloatField()
 class Profile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, unique=True)
+    user = models.OneToOneField(User, models.CASCADE)
     ROLE = (
         ("Teacher", "Teacher"),
         ("Student", "Student"),
@@ -158,4 +156,3 @@ class GalleryImage(models.Model):
     title = models.CharField(max_length=300)
     content = models.TextField(max_length=3000)
     date = models.DateField(default=timezone.now)
-

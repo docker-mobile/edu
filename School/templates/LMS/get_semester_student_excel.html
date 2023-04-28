@@ -1,0 +1,16 @@
+{% extends 'account.html' %}
+
+{% block main %}
+    <div class="container-fluid">
+        <div class="row justify-content-center align-items-center h-25">
+            <div class="col-lg-2">
+                <a href="/static/{{ file }}" class="btn btn-lg btn-warning shadow bi bi-download"> دانلود</a>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8 table-responsive">
+                {{ table|safe }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

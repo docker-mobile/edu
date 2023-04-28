@@ -3,20 +3,21 @@
 {% block main %}
     {% load custom_tags%}
     <div class="container-lg">
+        <a href="" class="bi bi-arrow-left"></a>
         <div class="row justify-content-center">
             <div class="col-lg-5 bg-danger-subtle shadow rounded-5 p-4  mx-auto my-5">
                 <label>دانش آموز: {{ fullname }}</label>
                 <form action="" method="post"> {% csrf_token %}
                     <label class="form-label">نمره: </label>
-                    <input type="text" name="score" class="form-control" value="{{ last_score }}">
+                    <input type="text" name="score" class="form-control">
                     <label class="form-label">موضوع: </label>
                     <select name="title" class="form-control">
-                        <option value="semester1 mostamar">ترم اول تکوینی</option>
-                        <option value="semester1">ترم اول نوبت</option>
-                        <option value="semester1 exam">ترم اول پایانی</option>
-                        <option value="semester2 mostamar">ترم دوم تکوینی </option>
-                        <option value="semester2">ترم دوم نوبت</option>
-                        <option value="semester2 exam">ترم دوم پایانی</option>
+                        <option value="1">ترم اول پایانی</option>
+                        <option value="2">ترم اول تکوینی</option>
+                        <option value="3">ترم اول نوبت</option>
+                        <option value="4">ترم دوم پایانی</option>
+                        <option value="5">ترم دوم تکوینی</option>
+                        <option value="6">ترم دوم نوبت</option>
                     </select>
                     <center><button type="submit" class="btn btn-success w-75 mt-3">ثبت</button></center>
                 </form>
@@ -28,17 +29,25 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>شماره ثبت</th>
-                            <th>موضوع</th>
-                            <th>نمره</th>
+                            <th>نام دانش آموز</th>
+                            <th>ترم اول پایانی</th>
+                            <th>ترم اول تکوینی</th>
+                            <th>ترم اول نوبت</th>
+                            <th>ترم دوم پایانی</th>
+                            <th>ترم دوم تکوینی</th>
+                            <th>ترم دوم نوبت</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for score in related_scores %}
+                        {% for score in rl_scores %}
                             <tr>
-                                <td>{{ score.id }}</td>
-                                <td>{{ score.title|convert_to_persian }}</td>
-                                <td>{{ score.score }}</td>
+                                <td>{{ score.user.user.first_name }} {{ score.user.user.last_name }}</td>
+                                <td>{{ score.semester1 }}</td>
+                                <td>{{ score.semester1_t }}</td>
+                                <td>{{ score.semester1_e }}</td>
+                                <td>{{ score.semester2 }}</td>
+                                <td>{{ score.semester2_t }}</td>
+                                <td>{{ score.semester2_e }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>

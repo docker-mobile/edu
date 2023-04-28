@@ -36,8 +36,8 @@ def convert_to_persian(st):
     if st == 'semester2 exam':
         return 'ترم دوم نوبت'
 @register.filter
-def get_exam_score(student):
-    exam = ExamScore.objects.filter(student__user=student)
+def get_exam_score(student, exam_id):
+    exam = ExamScore.objects.filter(exam_id=exam_id, student__user=student)
     if exam:
         return exam[0].exam_score
     else:

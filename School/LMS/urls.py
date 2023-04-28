@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import (
-    # admin
+    # admin:
         register_user_admin,
         SelectClassTeacher,
         SelectClassStudent,
@@ -19,7 +19,12 @@ from .views import (
         manage_blog,
         edit_blog_post,
         delete_blog_post,
-    #student
+        get_reportsheets,
+        get_semester_score,
+        get_semester_score_excel,
+        get_classscore_score,
+        get_classscore_score_excel,
+    #student:
         student_score,
         student_homework,
         student_exam,
@@ -29,7 +34,7 @@ from .views import (
         festival_parts,
         participate_in_festival,
         student_request,
-    #teacher
+    #teacher:
         manage_score,
         teacher_update_scores,
         manage_homework,
@@ -64,6 +69,11 @@ urlpatterns = [
     path('manage-blog/', manage_blog),
     path('manage-blog/<slug>/edit', edit_blog_post),
     path('manage-blog/<slug>/delete', delete_blog_post),
+    path('manage-reportsheet/', get_reportsheets),
+    path('manage-reportsheet/<student>/semester/', get_semester_score),
+    path('manage-reportsheet/<student>/semester/excel', get_semester_score_excel),
+    path('manage-reportsheet/<student>/classexam/', get_classscore_score),
+    path('manage-reportsheet/<student>/classexam/excel', get_classscore_score_excel),
     # teachers views:
     path('manage-scores/', manage_score),
     path('manage-scores/<str:subject>/<str:student>/', teacher_update_scores),

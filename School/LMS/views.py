@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
+import pandas as pd
+from django.conf import settings
+import xlsxwriter
+from django.contrib import messages
 from .forms import *
 from .models import *
 from blog.models import Post
 from blog.forms import PostForm
-# Create your views here.
 # security functions:
 
 
@@ -148,7 +151,6 @@ def manage_score(request):
         'users': User.objects.all(),
         'scores': Score.objects.all(),
         'role': get_user_role(request),
-        'scores': Score.objects.all(),
     }
     teacher_info = Teacher.objects.filter(user=request.user) or False
     if teacher_info:
@@ -169,35 +171,31 @@ def manage_score(request):
     return render(request, "LMS/manage score.html", context)
 
 def teacher_update_scores(request, student, subject):
-    # functions
-    def score_exist(title, subject, user):
-        for score in Score.objects.all():
-            if str(score.title) == str(title) and str(score.subject) == str(subject) and str(score.user) == str(user):
-                return True
-            else:
-                continue
-
-    # get student obj
-    for user in Student.objects.all():
-        username = user.user
-        if str(username) == str(student):
-            user_obj = user
-            break
+    student_obj = get_object_or_404(Student, user__username=student)
     if request.method == "POST":
-        title = request.POST.get('title')
+        title = int(request.POST.get('title'))
         score = request.POST.get('score')
         # add or update scores in Score model
-        if score_exist(title, subject, user_obj):
-            Score.objects.filter(user=user_obj, title=title, subject=subject).update(score=score)
-            redirect('/account/manage-scores/')
-        else:
-            Score.objects.create(user=user_obj, title=title, subject=subject, score=score)
-            redirect('/account/manage-scores/')
+        score_obj = Score.objects.get_or_create(user=student_obj, subject=subject)[0]
+        if title == 1:
+            score_obj.semester1 = score
+        elif title == 2:
+            score_obj.semester1_t = score
+        elif title == 3:
+            score_obj.semester1_e = score
+        elif title == 4:
+            score_obj.semester2 = score
+        elif title == 5:
+            score_obj.semester2_t = score
+        elif title == 6:
+            score_obj.semester2_e = score
+        # 1 -> sm1 2 -> sm1t 3 -> sm1e ...
+        score_obj.save()
 
     context = {
         'title': 'ویرایش',
         'fullname': User.objects.filter(username=student)[0].get_full_name(),
-        'related_scores': Score.objects.filter(user__user=user),
+        'rl_scores': Score.objects.filter(user=student_obj, subject=subject),
         'role': get_user_role(request),
     }
     return render(request, 'LMS/edit score.html', context)
@@ -308,6 +306,7 @@ def edit_examScore(request, id):
         'student_list': student_list,
         'users': User.objects.all(),
         'role': get_user_role(request),
+        'exam': id
     }
     return render(request, 'LMS/edit examscore.html', context)
 def change_student_examscore(request, id, student_id):
@@ -322,18 +321,12 @@ def change_student_examscore(request, id, student_id):
             context['last_score'] = exam_score.exam_score
             
     if request.method == "POST":
-        exist = False
-        for instance in ExamScore.objects.all():
-            if instance.exam_id.id == id and instance.student.user_id == student_id:
-                exist = True
-            else:
-                continue
-        if exist:
-            ExamScore.objects.filter(exam_id=Exam.objects.filter(id=id)[0], student=Student.objects.    filter(user_id=student_id)[0]).update(exam_score=request.POST.get('score'))
-            return redirect(f'/account/manage-exams/{id}/scores')
-        else:
-            ExamScore.objects.create(exam_id=Exam.objects.filter(id=id)[0], student=Student.objects.filter(user_id=student_id)[0], exam_score=request.POST.get('score'))
-            return redirect(f'/account/manage-exams/{id}/scores')
+        student = Student.objects.get(user=student_id)
+        exam = ExamScore.objects.get_or_create(exam_id_id=id, student=student)[0]
+        exam.exam_score = request.POST.get('score')
+        exam.save()
+
+        return redirect(f'/account/manage-exams/{id}/scores')
     return render(request, 'LMS/change student examscore.html', context)
 
 # student see his scores
@@ -450,7 +443,8 @@ def festival_parts(request, id):
 def participate_in_festival(request, id, part):
     festival = Festival.objects.filter(id=id)[0].title
     Request.objects.create(user=request.user, title=f'با سلام. کاربر {request.user} با نام {request.user.first_name} و نام خانوادگی {request.user.last_name} میخواهد در جشنواره {festival} در محور {part}، شرکت کند.')
-    return redirect('/account/?text=با موفقیت ثبت نام شدید.')
+    messages.success(request, 'شما با موفقیت ثبت نام شدید.')
+    return redirect('/account/')
 # admin manage festivals
 def manage_festivals(request):
     context = {
@@ -487,7 +481,8 @@ def answer_request(request, id):
     if not feedback:
         if request.method == 'POST':
             Request.objects.filter(id=id).update(feedback=request.POST.get('feedback'))
-            return redirect('/account/?text=با موفقیت ثبت شد')
+            messages.success(request, 'با موفقیت ثبت شد.')
+            return redirect('/account/')
     context = {
         'title': 'درخواست ها',
         'role': get_user_role(request),
@@ -585,3 +580,94 @@ def delete_blog_post(request, slug):
     obj = get_object_or_404(Post, slug=slug)
     obj.delete()
     return redirect('/account/manage-blog/')
+
+# Get student scores for admin
+def get_reportsheets(request):
+    context = {
+        'title': 'کارنامه دانش آموزان',
+        'students': Student.objects.all()
+    }
+    if request.GET.get('q'):
+        query = request.GET.get('q')
+        students = []
+        all_student = Student.objects.all()
+        for student in all_student:
+            if query in student.get_fullname():
+                students.append(student)
+            elif query in student.user.username:
+                students.append(student)
+            elif query in student.which_class():
+                students.append(student)
+
+        context['students'] = students
+    return render(request, 'LMS/get_reportsheet.html', context)
+def get_semester_score(request, student):
+    context = {
+        'title': 'نمرات ترم',
+        'scores': Score.objects.filter(user__user__username=student),
+        'student': student
+    }
+
+    return render(request, 'LMS/get semester score.html', context)
+def get_semester_score_excel(request, student):
+    sobj = Score.objects.filter(user__user__username=student)
+    scores = {'نام درس': [s.subject for s in sobj], 'ترم اول تکوینی': [s.semester1_t for s in sobj], 'ترم اول نوبت': [s.semester1_e for s in sobj], 'ترم اول پایانی': [s.semester1 for s in sobj], 'ترم دوم تکوینی': [s.semester2_t for s in sobj], 'ترم دوم نوبت': [s.semester2_e for s in sobj], 'ترم دوم پایانی': [s.semester2 for s in sobj]}
+    sum_score = 0
+    n_of_operation = 0
+    for score in sobj:
+        sum_score += float(score.semester1)
+        sum_score += float(score.semester2)
+        n_of_operation += 2
+    sum_ = sum_score / n_of_operation
+
+    df = pd.DataFrame(scores)
+    df.loc[len(df.index)] = [f'معدل: {sum_}', '', '', '', '', '', '']
+    df.reset_index(drop=True, inplace=True)
+    writer = pd.ExcelWriter(settings.STATICFILES_DIRS[0] / 'reportsheet.xlsx', engine='xlsxwriter')
+    workbook = writer.book
+    font = workbook.add_format({'font_name': 'vazir'})
+    df.to_excel(writer, sheet_name='Sheet1', index=False)
+    worksheet = writer.sheets['Sheet1']
+    worksheet.set_column(0, len(df.columns) - 1, 15, font)
+    writer._save()
+    file = 'reportsheet.xlsx'
+
+    context = {
+        'title': 'دریافت اکسل',
+        'file': file,
+        'table': df.to_html(index=False, classes='table')
+    }
+
+    return render(request, 'LMS/get_semester_student_excel.html', context)
+
+def get_classscore_score(request, student):
+    context = {
+        'title': 'نمرات کلاسی',
+        'exam_scores': ExamScore.objects.filter(student__user__username=student),
+    }
+    return render(request, 'LMS/get classcore.html', context)
+def get_classscore_score_excel(request, student):
+    all_score = ExamScore.objects.filter(student__user__username=student)
+    scores = {"نمرات": {}}
+    SUBJECTS = ['ریاضی', 'علوم', 'مطالعات اجتماعی', 'ادبیات فارسی', 'عربی', 'قرآن', 'پیام های آسمان', 'نگارش', 'تفکر و سبک زندگی', 'ورزش', 'فرهنگ و هنر', 'کار و فناوری', 'انگلیسی']
+    for subject in SUBJECTS:
+        score_list = []
+        for score in all_score:
+            if score.exam_id.subject == subject:
+               score_list.append(str(score.exam_score))
+        scores['نمرات'][subject] = ', '.join(score_list)
+    df = pd.DataFrame(scores)
+    writer = pd.ExcelWriter(settings.STATICFILES_DIRS[0] / 'نمرات کلاسی.xlsx', engine='xlsxwriter')
+    workbook = writer.book
+    font = workbook.add_format({'font_name': 'vazir', 'align': 'center'})
+    df.to_excel(writer, sheet_name='Sheet1')
+    worksheet = writer.sheets['Sheet1']
+    worksheet.set_column(0, 1, 13, font)
+    worksheet.set_column(1, len(df.columns), 10, font)
+    writer._save()
+    context = {
+        'title': 'نمرات کلاسی',
+        'file': 'نمرات کلاسی.xlsx',
+        'score_html': df.to_html(classes='table')
+    }
+    return render(request, 'LMS/get classscore excel.html', context)

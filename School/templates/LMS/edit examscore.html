@@ -1,6 +1,7 @@
 {% extends "account.html" %}
 
 {% block main %}
+    <a href="/account/manage-exams/" class="bi bi-arrow-right text-decoration-none badge bg-primary mt-5">برگشت</a>
     {% if student_list %}
         <div class="table-responsive">
             <table class="table">
@@ -22,7 +23,7 @@
                                     {% endif %}
                                 {% endfor %}
                             {% load custom_tags %}
-                            <td>{{ student|get_exam_score }}</td>
+                            <td>{{ student|get_exam_score:exam }}</td>
                             <td><a href="{{ student.user_id }}" class="btn btn-primary">ویرایش</a></td>
                         </tr>
                     {% endfor %}

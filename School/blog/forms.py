@@ -18,5 +18,5 @@ class PostForm(forms.ModelForm):
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'category': forms.TextInput(attrs={'class': 'form-control'}),
             'content': forms.Textarea(attrs={'class': 'form-control'}),
-            'file': forms.FileInput(attrs={'class': 'form-control', 'required': False}),
+            'file': forms.FileInput(attrs={'class': 'form-control'}),
         }
