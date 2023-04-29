@@ -32,8 +32,7 @@ def about_us(request):
     return render(request, 'about-us.html', context)
 def contact_us(request):
     context = {
-        'title': 'تماس با ما',
-        'posts': Post.objects.all()
+        'title': 'تماس با ما'
     }
     return render(request, 'contact-us.html', context)
 

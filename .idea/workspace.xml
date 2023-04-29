@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0fd2c265-cf4a-466c-905e-3f4abf1747c2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/School/templates/LMS/get classcore.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/School/templates/LMS/get classscore excel.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/School/templates/LMS/get semester score.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/School/templates/LMS/get_reportsheet.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/School/templates/LMS/get_semester_student_excel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Shohadaye-farhangi.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Shohadaye-farhangi.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/LMS/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/School/LMS/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/LMS/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/School/LMS/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/LMS/migrations/0002_news_alter_post_uploaded_time.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/LMS/migrations/0003_rename_news_new_alter_post_uploaded_time.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/LMS/migrations/0004_galleryimage_alter_post_uploaded_time.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/LMS/migrations/0005_galleryimage_date_alter_post_uploaded_time.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/LMS/migrations/0006_alter_homework_check_date_alter_post_uploaded_time.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/LMS/migrations/0007_sampleexam_description_alter_post_uploaded_time.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/LMS/migrations/0008_alter_post_uploaded_time_alter_score_title.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/LMS/migrations/0009_alter_post_uploaded_time.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/LMS/migrations/0010_alter_post_uploaded_time.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/LMS/migrations/0011_alter_post_uploaded_time.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/LMS/migrations/0012_alter_post_uploaded_time.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/LMS/migrations/0013_delete_post.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/LMS/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/School/LMS/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/LMS/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/School/LMS/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/LMS/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/School/LMS/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/accounts/templatetags/custom_tags.py" beforeDir="false" afterPath="$PROJECT_DIR$/School/accounts/templatetags/custom_tags.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/blog/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/School/blog/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/blog/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/School/blog/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/blog/migrations/0002_post_date_alter_post_file.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/blog/migrations/0003_post_category_alter_post_date.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/blog/migrations/0004_post_view_alter_post_date.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/blog/migrations/0005_post_slug_alter_post_date.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/blog/migrations/0006_alter_post_date.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/blog/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/School/blog/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/School/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/templates/LMS/change student examscore.html" beforeDir="false" afterPath="$PROJECT_DIR$/School/templates/LMS/change student examscore.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/templates/LMS/edit exam.html" beforeDir="false" afterPath="$PROJECT_DIR$/School/templates/LMS/edit exam.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/templates/LMS/edit examscore.html" beforeDir="false" afterPath="$PROJECT_DIR$/School/templates/LMS/edit examscore.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/templates/LMS/edit score.html" beforeDir="false" afterPath="$PROJECT_DIR$/School/templates/LMS/edit score.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/templates/LMS/manage blog.html" beforeDir="false" afterPath="$PROJECT_DIR$/School/templates/LMS/manage blog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/templates/LMS/manage gallery.html" beforeDir="false" afterPath="$PROJECT_DIR$/School/templates/LMS/manage gallery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/templates/LMS/student class.html" beforeDir="false" afterPath="$PROJECT_DIR$/School/templates/LMS/student class.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/templates/account.html" beforeDir="false" afterPath="$PROJECT_DIR$/School/templates/account.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/templates/accounts/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/School/templates/accounts/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/School/templates/base.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Nk6sjkhvgQEWhNYPcYxNMpLbnd" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/School/School/settings.py" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="advanced.settings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\programming\python\Shohadaye-farhangi\School\templates" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0fd2c265-cf4a-466c-905e-3f4abf1747c2" name="Changes" comment="" />
+      <created>1680195950398</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1680195950398</updated>
+      <workItem from="1680200155423" duration="14964000" />
+      <workItem from="1680243256456" duration="3592000" />
+      <workItem from="1680248650934" duration="5307000" />
+      <workItem from="1680283576020" duration="74000" />
+      <workItem from="1680672396505" duration="5911000" />
+      <workItem from="1680827145947" duration="1418000" />
+      <workItem from="1680931854165" duration="8737000" />
+      <workItem from="1681074089328" duration="6034000" />
+      <workItem from="1681141519158" duration="597000" />
+      <workItem from="1681190606286" duration="1847000" />
+      <workItem from="1681784780825" duration="8314000" />
+      <workItem from="1681852265098" duration="22412000" />
+      <workItem from="1681959321658" duration="25821000" />
+      <workItem from="1682125300544" duration="3669000" />
+      <workItem from="1682189797078" duration="849000" />
+      <workItem from="1682392969170" duration="1678000" />
+      <workItem from="1682395990011" duration="530000" />
+      <workItem from="1682484177523" duration="881000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
