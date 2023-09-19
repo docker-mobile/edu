@@ -669,5 +669,6 @@ def get_classscore_score_excel(request, student):
         'title': 'نمرات کلاسی',
         'file': 'نمرات کلاسی.xlsx',
         'score_html': df.to_html(classes='table')
+        
     }
     return render(request, 'LMS/get classscore excel.html', context)

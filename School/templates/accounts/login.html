@@ -135,7 +135,7 @@
     </style>
     <div class="container">
         <div class="brand-logo"></div>
-        <div class="brand-title">شهدای فرهنگی</div>
+        <div class="brand-title" onclick="window.location.href = `{% url 'home' %}`;" onmouseover="this.style.cursor = 'pointer'">شهدای فرهنگی</div>
         <form action="" method="post">{% csrf_token %}
             <div class="inputs">
                 {{ form.as_p }}

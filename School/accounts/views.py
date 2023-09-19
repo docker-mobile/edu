@@ -10,7 +10,7 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect(request.GET.get("next") or "/")
+            return redirect(request.GET.get("next") or "/account")
     else:
         form = LoginForm(request)
     
