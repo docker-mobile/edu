@@ -5,7 +5,7 @@ from LMS.models import Profile, Notification, New, GalleryImage
 def home(request):
     context = {
         "title": 'خانه',
-        "subtitle": "به مدرسه شهدای فرهنگی خوش آمدید",
+        "subtitle": "به مدرسه شهید طهماسبی خوش آمدید",
         "first_news": New.objects.all().order_by('-id')[:5],
         "second_news": New.objects.all().order_by('-id')[5:10],
         "gallery": GalleryImage.objects.all(),
