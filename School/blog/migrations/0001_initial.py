@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=255)),
                 ('slug', models.SlugField(max_length=230)),
                 ('content', models.TextField(max_length=7000)),
-                ('date', models.DateField(default=datetime.datetime(2023, 7, 4, 8, 12, 0, 549470, tzinfo=datetime.timezone.utc))),
+                ('date', models.DateField(default=datetime.datetime(2023, 7, 4, 8, 12, 0, 549470, tzinfo=datetime.UTC))),
                 ('file', models.FileField(blank=True, default=None, null=True, upload_to='static/assets/blog/file')),
                 ('view', models.IntegerField(default=0)),
             ],
